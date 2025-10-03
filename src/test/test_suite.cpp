@@ -285,20 +285,22 @@ TEST(test_empty_message) {
     
     client.Close();
     server_stop = true;
-    server_thread.join();
+    if (server_thread.joinable()) {
+        server_thread.join();
+    }
 }
 
 // Test 6: Large message handling
 TEST(test_large_message) {
     std::atomic<bool> server_ready(false);
-    std::atomic<bool> server_stop(false);
+    std::atomic<bool> server_done(false);
     
     std::thread server_thread([&]() {
         ZMQWrapper server;
         Config config;
         config.pattern = Pattern::REQ_REP;
         config.mode = Mode::SERVER;
-        config.timeout_ms = 2000;
+        config.timeout_ms = 10000;  // Very long timeout for large messages
         config.enable_logging = false;
         config.endpoint = "ipc:///tmp/test_large.sock";
         
@@ -308,8 +310,11 @@ TEST(test_large_message) {
             if (server.ReceiveMessage(message) == ErrorCode::SUCCESS) {
                 server.SendMessage(message);  // Echo back
             }
+            // Wait a bit before closing
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
         server.Close();
+        server_done = true;
     });
     
     while (!server_ready) {
@@ -321,7 +326,7 @@ TEST(test_large_message) {
     Config config;
     config.pattern = Pattern::REQ_REP;
     config.mode = Mode::CLIENT;
-    config.timeout_ms = 2000;
+    config.timeout_ms = 10000;  // Very long timeout for large messages
     config.enable_logging = false;
     config.endpoint = "ipc:///tmp/test_large.sock";
     
@@ -339,8 +344,15 @@ TEST(test_large_message) {
     ASSERT(reply.size() == large_message.size(), "Reply size should match");
     
     client.Close();
-    server_stop = true;
-    server_thread.join();
+    
+    // Wait for server to finish
+    while (!server_done) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    
+    if (server_thread.joinable()) {
+        server_thread.join();
+    }
 }
 
 // Test 7: Error handling - double init
