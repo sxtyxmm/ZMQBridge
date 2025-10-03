@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wno-tautological-constant-compare -O3 -DNDEBUG -rdynamic CMakeFiles/unittest_ypipe.dir/unittest_ypipe.cpp.o -o ../../../unittest_ypipe  ../../../libtestutil-static.a -Wl,-Bstatic -lrt ../../../libzmq.a -Wl,-Bdynamic -lbsd -lrt ../../../libunity.a 

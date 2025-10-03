@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG -shared -Wl,-soname,libprj1.so -o libprj1.so CMakeFiles/prj1.dir/src/prj1.cpp.o  libzmq.a -lbsd -lrt 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wno-tautological-constant-compare -O3 -DNDEBUG -rdynamic CMakeFiles/local_lat.dir/perf/local_lat.cpp.o -o ../../local_lat  -Wl,-rpath,/workspaces/ZMQBridge/prj1/build: ../../libzmq.so.5.2.5 -lbsd -lrt 

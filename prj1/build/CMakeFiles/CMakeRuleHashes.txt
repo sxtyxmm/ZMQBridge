@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+fa5bc4428d87bb53126d9fcbc86d1a40 lib/zeromq/CMakeFiles/clang-format
+71dd9aa768d31a7341f4595bd0ea0dac lib/zeromq/CMakeFiles/clang-format-check
+8cf71180eb4ec67009b01bf2557b48ab lib/zeromq/CMakeFiles/clang-format-diff

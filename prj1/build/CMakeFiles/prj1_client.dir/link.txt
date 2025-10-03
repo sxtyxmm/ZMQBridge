@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/prj1_client.dir/src/examples/client.cpp.o -o prj1_client  -Wl,-rpath,/workspaces/ZMQBridge/prj1/build libprj1.so 

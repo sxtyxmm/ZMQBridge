@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wno-tautological-constant-compare -O3 -DNDEBUG -rdynamic CMakeFiles/remote_thr.dir/perf/remote_thr.cpp.o -o ../../remote_thr  -Wl,-rpath,/workspaces/ZMQBridge/prj1/build: ../../libzmq.so.5.2.5 -lbsd -lrt 

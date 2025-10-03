@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wno-tautological-constant-compare -O3 -DNDEBUG -rdynamic CMakeFiles/test_ancillaries.dir/test_ancillaries.cpp.o -o ../../../test_ancillaries  -Wl,-rpath,/workspaces/ZMQBridge/prj1/build ../../../libtestutil.a -Wl,-Bstatic -lrt -Wl,-Bdynamic ../../../libzmq.so.5.2.5 -lbsd -lrt ../../../libunity.a 
